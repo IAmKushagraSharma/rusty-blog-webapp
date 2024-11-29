@@ -3,12 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} | TheDarkArtist{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | TheDarkArtist</title>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/tailwind.css" />
   </head>
   <body>
-    <header>{% include "base/header.html" %}</header>
-    <main>{% block content %} {% endblock %}</main>
-    <footer>{% include "base/footer.html" %}</footer>
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <header>{% include "base/header.html" %}</header>
+        <main class="h-max bg-zinc95">{% block content %} {% endblock %}</main>
+      </div>
+      <footer>{% include "base/footer.html" %}</footer>
+    </div>
   </body>
 </html>

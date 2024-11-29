@@ -1,0 +1,19 @@
+{
+  "name": "tda-web",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -o static/css/main.css --watch",
+    "start": "concurrently \"cargo watch -x run\" \"npm run build:css\""
+  },
+  "type": "module"
+}
