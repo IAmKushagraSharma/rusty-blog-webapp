@@ -19,11 +19,9 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(web::Data::new(tera.clone()))
             .wrap(Logger::default())
-            .configure(routes::web::init)
-            .service(fs::Files::new("/static", "./static").show_files_listing())
+            .configure(routes::init)
     })
     .bind("127.0.0.1:3000")?
     .run()
     .await
 }
-

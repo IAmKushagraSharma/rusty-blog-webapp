@@ -2589,6 +2589,7 @@ dependencies = [
  "argon2",
  "dotenv",
  "jsonwebtoken",
+ "lazy_static",
  "mime",
  "moka",
  "refinery",

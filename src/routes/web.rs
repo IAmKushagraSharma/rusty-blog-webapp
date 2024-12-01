@@ -1,11 +1,10 @@
-use actix_web::{error::ErrorNotFound, web, HttpResponse, Result};
+use actix_web::{web, HttpResponse};
 use tera::{Context, Tera};
 
 pub fn init(cfg: &mut web::ServiceConfig) {
     cfg.route("/", web::get().to(home_page))
         .route("/about", web::get().to(about_page))
-        .route("/contact", web::get().to(contact_page))
-        .default_service(web::route().to(not_found));
+        .route("/contact", web::get().to(contact_page));
 }
 
 async fn home_page(tmpl: web::Data<Tera>) -> HttpResponse {
@@ -46,16 +45,3 @@ async fn contact_page(tmpl: web::Data<Tera>) -> HttpResponse {
         }
     }
 }
-
-async fn not_found() -> Result<HttpResponse> {
-    let tera =
-        Tera::new("templates/**/*.html").map_err(|_| ErrorNotFound("Tera template error"))?;
-    let context = Context::new();
-    let rendered = tera
-        .render("pages/404.html", &context)
-        .map_err(|_| ErrorNotFound("Error rendering template"))?;
-
-    Ok(HttpResponse::NotFound().body(rendered))
-}
-
-
