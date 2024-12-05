@@ -1,4 +1,3 @@
-use actix_files as fs;
 use actix_web::{middleware::Logger, web, App, HttpServer};
 use tera::Tera;
 use tracing::info;
@@ -21,7 +20,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             .configure(routes::init)
     })
-    .bind("127.0.0.1:3000")?
+    .bind("127.0.0.1:4000")?
     .run()
     .await
 }
